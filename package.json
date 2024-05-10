@@ -1,0 +1,28 @@
+{
+  "name": "pinia-wait",
+  "version": "0.1.0",
+  "description": "Loading state for pinia actions",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "keywords": [
+    "pinia",
+    "vue",
+    "store",
+    "loading",
+    "wait",
+    "nuxt"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc -p ."
+  },
+  "author": "Viacheslav Afanasev <vyaches.afanas@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "@vue/reactivity": "^3.4.25"
+  },
+  "devDependencies": {
+    "pinia": "^2.1.7",
+    "typescript": "^5.4.5"
+  }
+}
