@@ -1,26 +1,31 @@
 import { reactive } from '@vue/reactivity'
 import { PiniaPluginContext } from 'pinia'
 
-function WaitPlugin({ options, store }: PiniaPluginContext) {
+const DEFAULT_NAME: string = 'wait'
+
+function WaitPlugin(
+  { options, store }: PiniaPluginContext,
+  waitObjectName = DEFAULT_NAME
+) {
   const defaultActionsStates: Record<string, boolean> = {}
   Object.keys(options.actions).forEach((key) => {
     defaultActionsStates[key] = false
   })
-  store.wait = reactive(defaultActionsStates)
+  store[waitObjectName] = reactive(defaultActionsStates)
   store.$onAction(({ after, name, onError }: any) => {
-    store.wait[name] = true
+    store[waitObjectName][name] = true
     after(() => {
-      store.wait[name] = false
+      store[waitObjectName][name] = false
     })
     onError(() => {
-      store.wait[name] = false
+      store[waitObjectName][name] = false
     })
   }, true)
 }
 
 declare module 'pinia' {
   export interface PiniaCustomStateProperties {
-    wait: Record<string, boolean>
+    [propName: string]: Record<string, boolean>
   }
 }
 

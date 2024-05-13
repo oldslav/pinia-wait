@@ -13,7 +13,7 @@
     "nuxt"
   ],
   "scripts": {
-    "build": "tsc -p .",
+    "build": "rm -rf dist && tsc -p .",
     "copy": "cp package.json dist && cp README.md dist",
     "deploy": "cd dist && npm publish"
   },
